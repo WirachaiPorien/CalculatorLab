@@ -18,7 +18,7 @@ namespace CPE200Lab1
         private bool isAfterEqual;
         private string firstOperand;
         private string operate;
-
+        private string secondOperand;
         private void resetAll()
         {
             lblDisplay.Text = "0";
@@ -26,6 +26,7 @@ namespace CPE200Lab1
             hasDot = false;
             isAfterOperater = false;
             isAfterEqual = false;
+            
         }
 
         private string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
@@ -119,6 +120,19 @@ namespace CPE200Lab1
                 case "-":
                 case "X":
                 case "÷":
+                    if(firstOperand != null)
+                    {
+                        string secondOperand = lblDisplay.Text;
+                        string result = calculate(operate, firstOperand, secondOperand);
+                        if (result is "E" || result.Length > 8)
+                        {
+                            lblDisplay.Text = "Error";
+                        }
+                        else
+                        {
+                            lblDisplay.Text = result;
+                        }
+                    }
                     firstOperand = lblDisplay.Text;
                     isAfterOperater = true;
                     break;
@@ -196,6 +210,8 @@ namespace CPE200Lab1
         private void btnClear_Click(object sender, EventArgs e)
         {
             resetAll();
+            firstOperand="0";
+            secondOperand = "0";   
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -226,6 +242,11 @@ namespace CPE200Lab1
                     lblDisplay.Text = "0";
                 }
             }
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

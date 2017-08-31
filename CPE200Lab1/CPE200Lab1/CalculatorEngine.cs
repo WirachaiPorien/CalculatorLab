@@ -8,11 +8,13 @@ namespace CPE200Lab1
 {
     class CalculatorEngine
     {
-        public string Calculate(string operate, string operate2 , string firstOperand, string secondOperand, int maxOutputSize = 8 )
+        public string Calculate(string operate, string operate2 , string firstOperand, string secondOperand, int maxOutputSize = 9 )
         {
             //double ans = 0;
+            
             switch (operate)
             {
+               
                 case "+":
                     return (Convert.ToDouble(firstOperand) + Convert.ToDouble(secondOperand)).ToString();
                 case "-":

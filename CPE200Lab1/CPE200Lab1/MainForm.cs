@@ -22,6 +22,8 @@ namespace CPE200Lab1
         private string operate3;
         private string operate4;
         private string secondOperand;
+        private string mFunction;
+        private string memoryOfm;
         private void resetAll()
         {
             lblDisplay.Text = "0";
@@ -34,6 +36,8 @@ namespace CPE200Lab1
             operate = null;
             operate2 = null;
             operate3 = null;
+            operate4 = null;
+            mFunction = null;
 
         }
         private CalculatorEngine engine;
@@ -97,7 +101,6 @@ namespace CPE200Lab1
                     {
                         string secondOperand = lblDisplay.Text;
                         string result = engine.Calculate(operate, operate2, firstOperand, secondOperand);
-                        result = result.Substring(0, 7);
                         if (result is "E" || result.Length > 8)
                         {
                             lblDisplay.Text = "Error";
@@ -280,29 +283,49 @@ namespace CPE200Lab1
             }
         }
 
-        private void button7_Click(object sender, EventArgs e)
+        private void Oneoverx_Click(object sender, EventArgs e)//oneoverx
         {
             operate4 = ((Button)sender).Text;
             switch (operate4)
             {
                 case "1/x":
-                    if (firstOperand != null)
+                    double oneOverx = (Convert.ToDouble(lblDisplay.Text));
+                    lblDisplay.Text = (1 / oneOverx).ToString();
+                    if (lblDisplay.Text.Length > 8)
                     {
-                        string secondOperand = lblDisplay.Text;
-                        string result = engine.Calculate(operate, operate2, firstOperand, secondOperand);
-                        if (result is "E" || result.Length > 8)
-                        {
-                            lblDisplay.Text = "Error";
-                        }
-                        else
-                        {
-                            lblDisplay.Text = result;
-                        }
+                        string oneoverxLength = lblDisplay.Text;
+                        lblDisplay.Text = oneoverxLength.Substring(0, 8);
                     }
                     firstOperand = lblDisplay.Text;
                     isAfterOperater = true;
                     break;
             }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            mFunction = ((Button)sender).Text;
+            switch(mFunction)
+            {
+                case "MC":
+                    memoryOfm = "0";
+                    lblDisplay.Text = "0";
+                    break;
+                case "MR":
+                    lblDisplay.Text = memoryOfm;
+                    break;
+                case "MS":
+                    memoryOfm = lblDisplay.Text;
+                    lblDisplay.Text = "0";
+                    break;
+                case "M+":
+                    lblDisplay.Text = (Convert.ToDouble(memoryOfm) + Convert.ToDouble(lblDisplay.Text)).ToString(); 
+                    break;
+                case "M-":
+                    lblDisplay.Text = (Convert.ToDouble(memoryOfm) - Convert.ToDouble(lblDisplay.Text)).ToString();
+                    break;
+            }
+
         }
     }
 }

@@ -8,7 +8,7 @@ namespace CPE200Lab1
 {
     class CalculatorEngine
     {
-        public string Calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
+        public string Calculate(string operate, string operate2 , string firstOperand, string secondOperand, int maxOutputSize = 8 )
         {
             //double ans = 0;
             switch (operate)
@@ -42,9 +42,44 @@ namespace CPE200Lab1
                     }
                     break;
                 case "%":
-                    
-                    //your code here
+                    if (operate2 == "+")
+                    {
+                        return (Convert.ToDouble(firstOperand) + ((Convert.ToDouble(firstOperand) / 100) * Convert.ToDouble(secondOperand))).ToString();
+                    }
+                    if (operate2 == "-")
+                    {
+                        return (Convert.ToDouble(firstOperand) - ((Convert.ToDouble(firstOperand) / 100) * Convert.ToDouble(secondOperand))).ToString();
+                    }
+                    if (operate2 == "x")
+                    {
+                        return (Convert.ToDouble(firstOperand) * ((Convert.ToDouble(firstOperand) / 100) * Convert.ToDouble(secondOperand))).ToString();
+                    }
+                    if (operate2 == "/")
+                    {
+                        return (Convert.ToDouble(firstOperand) / ((Convert.ToDouble(firstOperand) / 100) * Convert.ToDouble(secondOperand))).ToString();
+                    }
                     break;
+                case "√":
+                    
+                    if (operate2 == "+")
+                    {
+                        return (Convert.ToDouble(firstOperand) + Convert.ToDouble(secondOperand)).ToString();
+                    }
+                    if (operate2 == "-")
+                    {
+                        return (Convert.ToDouble(firstOperand) - Convert.ToDouble(secondOperand)).ToString();
+                    }
+                    if (operate2 == "x")
+                    {
+                        return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand)).ToString();
+                    }
+                    if (operate2 == "/")
+                    {
+                        return (Convert.ToDouble(firstOperand) / Convert.ToDouble(secondOperand)).ToString();
+                    }
+
+                    break;
+
             }
             //firstOperand = Convert.ToString(ans);
             //operate = "0";

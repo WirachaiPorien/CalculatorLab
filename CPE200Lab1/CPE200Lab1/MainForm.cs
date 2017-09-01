@@ -101,7 +101,12 @@ namespace CPE200Lab1
                     {
                         string secondOperand = lblDisplay.Text;
                         string result = engine.Calculate(operate, operate2, firstOperand, secondOperand);
-                        if (result is "E" || result.Length > 8)
+                        //result = System.Math.Ceiling((Convert.ToDouble(result)*100)/100).ToString();
+                        if (result.Length > 8)
+                        {
+                            result = result.Substring(0, 8);
+                        }
+                        if (result is "E" )
                         {
                             lblDisplay.Text = "Error";
                         }
@@ -120,6 +125,7 @@ namespace CPE200Lab1
                     {
                         string secondOperand = lblDisplay.Text;
                         string result = engine.Calculate(operate, operate2, firstOperand, secondOperand);
+                        result = result.Substring(0, 8);
                         if (result is "E" || result.Length > 8)
                         {
                             lblDisplay.Text = "Error";
@@ -146,8 +152,11 @@ namespace CPE200Lab1
             }
             string secondOperand = lblDisplay.Text;
             string result = engine.Calculate(operate, operate2, firstOperand, secondOperand);
-            
-            if (result is "E" || result.Length > 8)
+            if (result.Length > 8)
+            {
+                result = result.Substring(0, 8);
+            }
+            if (result is "E" )
             {
                 lblDisplay.Text = "Error";
             }

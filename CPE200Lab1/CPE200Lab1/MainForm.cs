@@ -21,6 +21,7 @@ namespace CPE200Lab1
         private double memory;
         private CalculatorEngine engine;
 
+        private string secondOperand;
         private void resetAll()
         {
             lblDisplay.Text = "0";

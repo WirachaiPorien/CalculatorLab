@@ -1,4 +1,6 @@
-﻿namespace CPE200Lab1
+﻿using System;
+
+namespace CPE200Lab1
 {
     partial class MainForm
     {
@@ -310,7 +312,7 @@
             this.btnMR.TabIndex = 22;
             this.btnMR.Text = "MR";
             this.btnMR.UseVisualStyleBackColor = true;
-            this.btnMR.Click += new System.EventHandler(this.btnMR_Click);
+            this.btnMR.Click += new System.EventHandler(this.btnMC_Click);
             // 
             // btnMP
             // 

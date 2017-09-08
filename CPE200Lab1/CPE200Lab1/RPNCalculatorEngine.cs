@@ -9,28 +9,21 @@ namespace CPE200Lab1
 {
     class RPNCalculatorEngine : CalculatorEngine
     {
-        //split str to parts
-        //loop each parts
-        //if part is number
-        //push to stack
-        //if part is operator
-        //pop two time =-> second,first operand
         public string Process(string str)
         {
-
+            //split str to parts
             string[] parts = str.Split(' ');
 
             Stack rpnStack = new Stack();
             //string result;
-            for(int i=0 ; i< parts.Length-1;i++)
+            for(int i=0 ; i< parts.Length-1;i++)//loop each parts
             {
-                if (parts[i] == "+" || parts[i] == "-" || parts[i] == "X" || parts[i] == "÷")
+                if (parts[i] == "+" || parts[i] == "-" || parts[i] == "X" || parts[i] == "÷")//if part is operator
                 {
                     string firstOperand = Convert.ToString(rpnStack.Pop());
                     string secondOperand = Convert.ToString(rpnStack.Pop());
                     rpnStack.Push(calculate(parts[i], firstOperand, secondOperand));
-
-
+                    //pop two time =-> second,first operand
                 }
                 else
                 {

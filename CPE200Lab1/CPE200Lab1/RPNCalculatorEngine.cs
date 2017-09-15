@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,30 +6,37 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    class RPNCalculatorEngine : CalculatorEngine
+    public class RPNCalculatorEngine : CalculatorEngine
     {
-        public string Process(string str)
+        public new string Process(string str)
         {
-            //split str to parts
-            string[] parts = str.Split(' ');
+            Stack<string> rpnStack = new Stack<string>();
+            List<string> parts = str.Split(' ').ToList<string>();
+            string result;
+            string firstOperand, secondOperand;
 
-            Stack rpnStack = new Stack();
-            //string result;
-            for(int i=0 ; i< parts.Length-1;i++)//loop each parts
+            foreach (string token in parts)
             {
-                if (parts[i] == "+" || parts[i] == "-" || parts[i] == "X" || parts[i] == "÷")//if part is operator
+                if (isNumber(token))
                 {
-                    string firstOperand = Convert.ToString(rpnStack.Pop());
-                    string secondOperand = Convert.ToString(rpnStack.Pop());
-                    rpnStack.Push(calculate(parts[i], firstOperand, secondOperand));
-                    //pop two time =-> second,first operand
+                    rpnStack.Push(token);
                 }
-                else
+                else if (isOperator(token))
                 {
-                    rpnStack.Push(parts[i]);
+                    //FIXME, what if there is only one left in stack?
+                    secondOperand = rpnStack.Pop();
+                    firstOperand = rpnStack.Pop();
+                    result = calculate(token, firstOperand, secondOperand, 4);
+                    if (result is "E")
+                    {
+                        return result;
+                    }
+                    rpnStack.Push(result);
                 }
             }
-            return Convert.ToString(rpnStack.Pop());
+            //FIXME, what if there is more than one, or zero, items in the stack?
+            result = rpnStack.Pop();
+            return result;
         }
     }
 }
